@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ThemeDetailViewContoller: UIViewController {
+final class ThemeDetailViewContoller: UIViewController {
 
     // MARK: - Properties
     

@@ -12,7 +12,7 @@ protocol ThemeCellDelegate: AnyObject {
     func removeLikeTheme(_ cell: ThemeCell, remove theme: Theme)
 }
 
-class ThemeCell: UITableViewCell {
+final class ThemeCell: UITableViewCell {
     
     // MARK: - Properties
     

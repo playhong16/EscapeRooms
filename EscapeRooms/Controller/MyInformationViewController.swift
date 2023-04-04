@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class MyInformationViewController: UIViewController {
+final class MyInformationViewController: UIViewController {
 
     
     // MARK: - Properties

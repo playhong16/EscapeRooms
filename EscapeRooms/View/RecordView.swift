@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecordView: UIView {
+final class RecordView: UIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()

@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class ThemeViewController: UIViewController {
+final class ThemeViewController: UIViewController {
     
     // MARK: - Properties
     

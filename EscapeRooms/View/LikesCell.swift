@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LikesCell: UITableViewCell {
+final class LikesCell: UITableViewCell {
     
     // MARK: - Properties
 

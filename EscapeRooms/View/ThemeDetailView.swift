@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class ThemeDetailView: UIView {
+final class ThemeDetailView: UIView {
 
     // MARK: - Properties
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LikesViewController: UIViewController {
+final class LikesViewController: UIViewController {
     
     // MARK: - Propertis
 
