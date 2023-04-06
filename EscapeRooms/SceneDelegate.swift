@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let vc1 = UINavigationController(rootViewController: ThemeViewController())
         let vc2 = UINavigationController(rootViewController: LikesViewController())
-        let vc3 = UINavigationController(rootViewController: RecordController())
+        let vc3 = UINavigationController(rootViewController: RecordViewController())
         let vc4 = UINavigationController(rootViewController: MyInformationViewController())
         
         vc1.title = "테마"

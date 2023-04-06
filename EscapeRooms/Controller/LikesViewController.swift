@@ -11,7 +11,7 @@ final class LikesViewController: UIViewController {
     
     // MARK: - Propertis
 
-    var tableView = UITableView()
+    private var tableView = UITableView()
     var likeThemes: [Theme] = []
     var themesManager = ThemesManager()
 

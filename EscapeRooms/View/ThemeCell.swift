@@ -28,16 +28,14 @@ final class ThemeCell: UITableViewCell {
     
     let image: UIImageView = {
         let iv = UIImageView()
-        
         iv.layer.cornerRadius = 10
         iv.clipsToBounds = true
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     
-     let nameLabel: UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
-        
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,9 +43,8 @@ final class ThemeCell: UITableViewCell {
         return label
     }()
     
-    let companyLabel: UILabel = {
+   let companyLabel: UILabel = {
         let label = UILabel()
-        
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +53,6 @@ final class ThemeCell: UITableViewCell {
     
     let difficultyLabel: UILabel = {
         let label = UILabel()
-        
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +61,6 @@ final class ThemeCell: UITableViewCell {
     
     let playTimeLabel: UILabel = {
         let label = UILabel()
-        
         label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +69,6 @@ final class ThemeCell: UITableViewCell {
     
     let personnelLabel: UILabel = {
         let label = UILabel()
-        
         label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -83,7 +77,6 @@ final class ThemeCell: UITableViewCell {
     
     lazy var stackView: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [difficultyLabel, playTimeLabel])
-        
         sv.axis = .horizontal
         sv.alignment = .fill
         sv.distribution = .fill
@@ -97,7 +90,6 @@ final class ThemeCell: UITableViewCell {
         button.setImage(UIImage(systemName: "heart", withConfiguration: likeButtonConfigure), for: .normal)
         button.tintColor = .lightGray
 //        button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -109,7 +101,6 @@ final class ThemeCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
-        
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
     }
     
@@ -126,8 +117,6 @@ final class ThemeCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        print(#function)
-//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
     }
     
     

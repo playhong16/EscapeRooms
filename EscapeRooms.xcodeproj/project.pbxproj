@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		052BB23329D571700009E829 /* RecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB23229D571700009E829 /* RecordController.swift */; };
+		052BB23329D571700009E829 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB23229D571700009E829 /* RecordViewController.swift */; };
 		052BB23529D5726B0009E829 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB23429D5726B0009E829 /* RecordView.swift */; };
+		052BB23929DF05AF0009E829 /* RecordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB23829DF05AF0009E829 /* RecordDetailView.swift */; };
+		052BB23B29DF06500009E829 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB23A29DF06500009E829 /* RecordCell.swift */; };
+		052BB23D29DF0B440009E829 /* RecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB23C29DF0B440009E829 /* RecordDetailViewController.swift */; };
 		0544D53D29ACC2F700394E5E /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544D53C29ACC2F700394E5E /* LikesViewController.swift */; };
 		0544D53F29AF594500394E5E /* LikesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544D53E29AF594500394E5E /* LikesCell.swift */; };
 		0544D56329B97DFC00394E5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0544D56229B97DFC00394E5E /* GoogleService-Info.plist */; };
@@ -42,8 +45,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		052BB23229D571700009E829 /* RecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordController.swift; sourceTree = "<group>"; };
+		052BB23229D571700009E829 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		052BB23429D5726B0009E829 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		052BB23829DF05AF0009E829 /* RecordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailView.swift; sourceTree = "<group>"; };
+		052BB23A29DF06500009E829 /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
+		052BB23C29DF0B440009E829 /* RecordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordDetailViewController.swift; sourceTree = "<group>"; };
 		0544D53C29ACC2F700394E5E /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		0544D53E29AF594500394E5E /* LikesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesCell.swift; sourceTree = "<group>"; };
 		0544D56229B97DFC00394E5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -125,7 +131,8 @@
 				0544D57B29B998B700394E5E /* LoginViewController.swift */,
 				0544D57D29B9AA5F00394E5E /* SignUpViewController.swift */,
 				0544D58129BA055500394E5E /* MyInformationViewController.swift */,
-				052BB23229D571700009E829 /* RecordController.swift */,
+				052BB23229D571700009E829 /* RecordViewController.swift */,
+				052BB23C29DF0B440009E829 /* RecordDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -137,6 +144,8 @@
 				05AEC7DD29A7B4DA007944A0 /* ThemeDetailView.swift */,
 				0544D53E29AF594500394E5E /* LikesCell.swift */,
 				052BB23429D5726B0009E829 /* RecordView.swift */,
+				052BB23829DF05AF0009E829 /* RecordDetailView.swift */,
+				052BB23A29DF06500009E829 /* RecordCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,11 +268,14 @@
 				0544D53F29AF594500394E5E /* LikesCell.swift in Sources */,
 				052BB23529D5726B0009E829 /* RecordView.swift in Sources */,
 				05AEC7DE29A7B4DA007944A0 /* ThemeDetailView.swift in Sources */,
-				052BB23329D571700009E829 /* RecordController.swift in Sources */,
+				052BB23329D571700009E829 /* RecordViewController.swift in Sources */,
 				05AEC7BC29A631E4007944A0 /* EscapeRooms.xcdatamodeld in Sources */,
 				0544D58229BA055500394E5E /* MyInformationViewController.swift in Sources */,
+				052BB23929DF05AF0009E829 /* RecordDetailView.swift in Sources */,
 				05AEC7B229A631E4007944A0 /* AppDelegate.swift in Sources */,
 				0544D58029B9AEE400394E5E /* User.swift in Sources */,
+				052BB23B29DF06500009E829 /* RecordCell.swift in Sources */,
+				052BB23D29DF0B440009E829 /* RecordDetailViewController.swift in Sources */,
 				05AEC7D129A70A3E007944A0 /* ThemeCell.swift in Sources */,
 				0544D53D29ACC2F700394E5E /* LikesViewController.swift in Sources */,
 				05AEC7DC29A7B452007944A0 /* ThemeDetailViewContoller.swift in Sources */,

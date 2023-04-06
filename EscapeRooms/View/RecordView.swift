@@ -9,9 +9,9 @@ import UIKit
 
 final class RecordView: UIView {
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "나의 탈출 일지"
-        return label
+   private let titleLabel: UILabel = {
+    let label = UILabel()
+    label.text = "나의 탈출 일지"
+    return label
     }()
 }

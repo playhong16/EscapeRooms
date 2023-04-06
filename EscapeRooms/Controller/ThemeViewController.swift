@@ -36,13 +36,12 @@ final class ThemeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
         configureNaviBar()
         configureSearchBar()
         configureTableView()
         getThemeData()
-        checkIfUserIsLoggedIn()
+//        checkIfUserIsLoggedIn()
     }
     
     // MARK: - Setting
@@ -130,14 +129,14 @@ final class ThemeViewController: UIViewController {
     }
     
     // 사용자가 연결되었는지 확인
-    func checkIfUserIsLoggedIn() {
-        if Auth.auth().currentUser == nil {
-            let vc = LoginViewController()
-            vc.hidesBottomBarWhenPushed = true
-            vc.navigationItem.hidesBackButton = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
+//    func checkIfUserIsLoggedIn() {
+//        if Auth.auth().currentUser == nil {
+//            let vc = LoginViewController()
+//            vc.hidesBottomBarWhenPushed = true
+//            vc.navigationItem.hidesBackButton = true
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+//    }
 
 
 }
@@ -155,10 +154,10 @@ extension ThemeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         print("DEBUG: Transfer Cell data")
         let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeCell", for: indexPath) as! ThemeCell
         cell.delegate = self
+        
         if self.isFiltering {
             cell.image.image = filterThemes[indexPath.section].image
             cell.nameLabel.text = filterThemes[indexPath.section].name
@@ -168,7 +167,7 @@ extension ThemeViewController: UITableViewDataSource {
             cell.personnelLabel.text = filterThemes[indexPath.section].personnel
             cell.theme = themes[indexPath.section]
             return cell
-            
+        
         } else {
             cell.image.image = themes[indexPath.section].image
             cell.nameLabel.text = themes[indexPath.section].name
