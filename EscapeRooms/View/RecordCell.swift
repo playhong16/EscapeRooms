@@ -9,11 +9,11 @@ import UIKit
 
 class RecordCell: UICollectionViewCell {
     
-    let image: UIImageView = {
+    var themeImage: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleToFill
-        iv.image = UIImage(named: "photo")
+        iv.backgroundColor = .blue
         return iv
     }()
     
@@ -22,26 +22,32 @@ class RecordCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        setConstraints()
+//        setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func updateConstraints() {
+        setConstraints()
+        super.updateConstraints()
+    }
+    
     // MARK: - Configure
 
     func setupUI() {
-        self.backgroundColor = .blue
-        self.addSubview(image)
+//        self.backgroundColor = .systemPink
+        print("DEBUG: RecordCell UI Setting!")
+        self.addSubview(themeImage)
     }
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: self.topAnchor),
-            image.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            image.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            image.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            themeImage.topAnchor.constraint(equalTo: self.topAnchor),
+            themeImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            themeImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            themeImage.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 }

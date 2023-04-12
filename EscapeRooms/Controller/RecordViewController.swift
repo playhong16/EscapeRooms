@@ -8,12 +8,13 @@
 import UIKit
 
 final class RecordViewController: UIViewController {
-
+    
+    
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .brown
+        cv.backgroundColor = .white
         return cv
     }()
     
@@ -25,7 +26,7 @@ final class RecordViewController: UIViewController {
     }
     
     func configureUI() {
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .white
         self.title = "기록"
         
         self.view.addSubview(collectionView)
@@ -47,7 +48,7 @@ final class RecordViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 100)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -71,7 +72,7 @@ extension RecordViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCell", for: indexPath) as? RecordCell else { return UICollectionViewCell() }
-        cell.backgroundColor = .blue
+        cell.themeImage.image = UIImage(named: "강남목욕탕.jpeg")
         return cell
     }
     
@@ -80,15 +81,19 @@ extension RecordViewController: UICollectionViewDataSource {
 
 extension RecordViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300, height: 100)
+        let size: CGFloat = collectionView.frame.width / 3 - 3
+        let height: CGFloat = size + 20
+        return CGSize(width: size, height: height)
     }
     
+    // 세로 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
+        return 3
     }
     
+    // 가로 간격 설정
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
+        return 0
     }
     
 }
