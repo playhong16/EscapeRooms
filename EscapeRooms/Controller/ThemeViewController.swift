@@ -51,7 +51,7 @@ final class ThemeViewController: UIViewController {
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(red: 29/255, green: 45/255, blue: 68/255, alpha: 1)
+        appearance.backgroundColor = UIColor.navy
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         // 네비게이션 타이틀("테마") 왼쪽으로 위치

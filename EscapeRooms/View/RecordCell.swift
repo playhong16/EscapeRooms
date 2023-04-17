@@ -22,7 +22,7 @@ class RecordCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-//        setConstraints()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -39,7 +39,7 @@ class RecordCell: UICollectionViewCell {
     func setupUI() {
 //        self.backgroundColor = .systemPink
         print("DEBUG: RecordCell UI Setting!")
-        self.addSubview(themeImage)
+        contentView.addSubview(themeImage)
     }
     
     func setConstraints() {

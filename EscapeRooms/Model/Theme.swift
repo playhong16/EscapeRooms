@@ -8,7 +8,6 @@
 import UIKit
  
 struct Theme {
-    
     let image: UIImage?
     let name: String
     let company: String
@@ -18,6 +17,4 @@ struct Theme {
     let story: String
     let price: String
     let address: String?
-    var didLike = false
-    var index: Int?
 }

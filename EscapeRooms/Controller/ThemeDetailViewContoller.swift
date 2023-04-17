@@ -36,7 +36,7 @@ final class ThemeDetailViewContoller: UIViewController {
         addMapPin()
     }
     
-    // MARK: - Configure
+    // MARK: - Setting
     
     func setupUI() {
         title = themes?.name

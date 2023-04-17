@@ -25,7 +25,7 @@ final class LikesViewController: UIViewController {
         getData()
     }
     
-    // MARK: - Configure
+    // MARK: - Setting
     
     func configureNaviBar() {
         self.title = "찜"

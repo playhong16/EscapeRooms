@@ -26,7 +26,6 @@ final class ThemeDetailView: UIView {
     let mainView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
         view.backgroundColor = .white
         return view
     }()
@@ -34,13 +33,11 @@ final class ThemeDetailView: UIView {
     let image: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        
         return iv
     }()
     
     let firstLine: UIView = {
         let view = UIView()
-        
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
         return view
@@ -48,7 +45,6 @@ final class ThemeDetailView: UIView {
     
     let secondLine: UIView = {
         let view = UIView()
-        
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
         return view
@@ -56,7 +52,6 @@ final class ThemeDetailView: UIView {
     
     let thirdLine: UIView = {
         let view = UIView()
-        
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
         return view
@@ -65,7 +60,6 @@ final class ThemeDetailView: UIView {
     let nameLabel: UILabel = {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
-        
        label.font = UIFont.boldSystemFont(ofSize: 22)
        label.textColor = .black
        return label
@@ -74,7 +68,6 @@ final class ThemeDetailView: UIView {
    let companyLabel: UILabel = {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
-       
        label.font = UIFont.boldSystemFont(ofSize: 17)
        label.textColor = .gray
        return label
@@ -83,7 +76,6 @@ final class ThemeDetailView: UIView {
    let difficultyLabel: UILabel = {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
-       
        label.font = UIFont.systemFont(ofSize: 14)
        label.textColor = .black
        return label
@@ -92,7 +84,6 @@ final class ThemeDetailView: UIView {
    let playTimeLabel: UILabel = {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
-       
        label.font = UIFont.systemFont(ofSize: 14)
        label.textColor = .black
        return label
@@ -101,7 +92,6 @@ final class ThemeDetailView: UIView {
    let personnelLabel: UILabel = {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
-       
        label.font = UIFont.systemFont(ofSize: 14)
        label.textColor = .black
        return label
@@ -110,7 +100,6 @@ final class ThemeDetailView: UIView {
     lazy var stackView: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [difficultyLabel, playTimeLabel])
         sv.translatesAutoresizingMaskIntoConstraints = false
-
         sv.axis = .horizontal
         sv.alignment = .fill
         sv.distribution = .fill
@@ -121,7 +110,6 @@ final class ThemeDetailView: UIView {
     let storyLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.text = "줄거리"
         label.textColor = .black
@@ -131,7 +119,6 @@ final class ThemeDetailView: UIView {
     let storyTextView: UITextView = {
        let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        
         tv.font = UIFont.systemFont(ofSize: 14)
         tv.backgroundColor = .white
         tv.textColor = .black
@@ -141,7 +128,6 @@ final class ThemeDetailView: UIView {
     let priceTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.text = "가격 정보"
         label.textColor = .black
@@ -151,7 +137,6 @@ final class ThemeDetailView: UIView {
     let priceSubLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         label.font = UIFont.systemFont(ofSize: 16)
         label.text = "인당 가격"
         label.textColor = .gray
@@ -161,7 +146,6 @@ final class ThemeDetailView: UIView {
     let priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = .black
         return label
@@ -170,7 +154,6 @@ final class ThemeDetailView: UIView {
     let locationTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.text = "위치 정보"
         label.textColor = .black
@@ -188,7 +171,6 @@ final class ThemeDetailView: UIView {
     let locationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.text = "서울특별시 강남구 역삼동 824-25 대우디오빌플러스 지하 1층 111호"
         label.textColor = .black
@@ -200,14 +182,13 @@ final class ThemeDetailView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         view.layer.borderWidth = 0.5
-        view.layer.borderColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1).cgColor
+        view.layer.borderColor = UIColor.customGray.cgColor
         return view
     }()
     
     let reservationButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         button.backgroundColor = UIColor(red: 250/255, green: 149/255, blue: 0/255, alpha: 1)
         button.setTitle("예약하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -217,25 +198,18 @@ final class ThemeDetailView: UIView {
         return button
     }()
     
-    let reservationWebView: UIWebView = {
-        let webView = UIWebView()
-        return webView
-    }()
-    
     lazy var likeButton: UIButton = {
         let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "heart", withConfiguration: likeButtonConfigure), for: .normal)
         button.tintColor = .lightGray
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     lazy var bottomButtonStackView: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [likeButton, reservationButton])
         sv.translatesAutoresizingMaskIntoConstraints = false
-
         sv.axis = .horizontal
         sv.alignment = .fill
         sv.distribution = .fill

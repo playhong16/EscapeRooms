@@ -9,8 +9,8 @@ import UIKit
 
 final class RecordViewController: UIViewController {
     
-    
-    
+    // MARK: - Properties
+
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -18,12 +18,16 @@ final class RecordViewController: UIViewController {
         return cv
     }()
     
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureNavi()
         configureCV()
     }
+    
+    // MARK: - Setting
     
     func configureUI() {
         view.backgroundColor = .white
@@ -33,7 +37,9 @@ final class RecordViewController: UIViewController {
     }
     
     func configureNavi() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        let image = UIImage(systemName: "square.and.pencil")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem?.tintColor = .navy
     }
     
     func configureCV() {
@@ -55,10 +61,14 @@ final class RecordViewController: UIViewController {
     // MARK: - Action
 
     @objc func addTapped() {
-        navigationController?.pushViewController(RecordDetailViewController(), animated: true)
+        let detailView = RecordDetailViewController()
+        detailView.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(detailView, animated: true)
     }
 
 }
+
+// MARK: - Extension
 
 extension RecordViewController: UICollectionViewDataSource {
     
@@ -101,3 +111,5 @@ extension RecordViewController: UICollectionViewDelegateFlowLayout {
 extension RecordViewController: UICollectionViewDelegate {
     
 }
+
+
