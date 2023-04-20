@@ -17,11 +17,11 @@ final class CoreDataManager {
     
     lazy var context = appDelegate?.persistentContainer.viewContext
     
-    let modelName: String = "EscapeRooms"
+    let modelName: String = "RecordData"
     
     // MARK: - Create
 
-    func createRecord(photo: UIImage?, result: Bool, escapeTime: String, text: String?, completion: @escaping() -> Void) {
+    func createRecord(result: Bool, theme: String, date: Date, minute: String, second: String, hint: String, text: String?, completion: @escaping() -> Void) {
         if let context = context {
             
             if let entity = NSEntityDescription.entity(forEntityName: self.modelName, in: context) {
@@ -29,9 +29,12 @@ final class CoreDataManager {
                 if let record = NSManagedObject(entity: entity, insertInto: context) as? RecordData {
                     
 //                    record.photo = photo
-                    record.date = Date()
+                    record.theme = theme
+                    record.date = date
                     record.result = result
-                    record.escapeTime = escapeTime
+                    record.minute = minute
+                    record.second = second
+                    record.hint = hint
                     record.text = text
                     
                     appDelegate?.saveContext()

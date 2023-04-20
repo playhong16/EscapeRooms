@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol SaveButtonDelegate {
+    func saveButtonTapped()
+}
+
 class RecordDetailView: UIView {
     
     private lazy var buttonWidth = self.frame.width / 2
     
     // MARK: - Properties
+    
+    var delegate: SaveButtonDelegate?
     
     let scrollView: UIScrollView = {
         let sv = UIScrollView()
@@ -73,8 +79,10 @@ class RecordDetailView: UIView {
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.backgroundColor = .customGray
         tf.layer.cornerRadius = 8
-        tf.textAlignment = .center
         tf.layer.masksToBounds = true
+//        tf.contentHorizontalAlignment = .leading
+        tf.textAlignment = .center
+        tf.placeholder = "테마를 선택해주세요."
         return tf
     }()
     
@@ -83,6 +91,22 @@ class RecordDetailView: UIView {
         pv.translatesAutoresizingMaskIntoConstraints = false
         pv.backgroundColor = .clear
         return pv
+    }()
+    
+    let toolbar: UIToolbar = {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.barStyle = UIBarStyle.default
+        toolbar.sizeToFit()
+        toolbar.tintColor = .navy
+        toolbar.isTranslucent = true
+        toolbar.isUserInteractionEnabled = true
+        
+        let doneButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(doneButtonTapped))
+        let space = UIBarButtonItem(systemItem: .flexibleSpace)
+        let cancelButton = UIBarButtonItem(title: "취소", style: .done, target: self, action: #selector(cancelButtonTapped))
+        toolbar.setItems([cancelButton, space, doneButton], animated: true)
+        return toolbar
     }()
     
     lazy var themeStackView: UIStackView = {
@@ -134,44 +158,52 @@ class RecordDetailView: UIView {
         return label
     }()
     
-    let escapeTimeTextField: UITextField = {
+    let minuteLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "분"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+    
+    let secondLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "초"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+    
+    let minuteTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.backgroundColor = .customGray
         tf.layer.cornerRadius = 8
         tf.textAlignment = .center
         tf.layer.masksToBounds = true
+        tf.placeholder = "0"
         return tf
     }()
     
-    let escapeTimePickerView: UIPickerView = {
-        let pv = UIPickerView()
-        pv.translatesAutoresizingMaskIntoConstraints = false
-        pv.backgroundColor = .clear
-        return pv
+    let secondTextField: UITextField = {
+        let tf = UITextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.backgroundColor = .customGray
+        tf.layer.cornerRadius = 8
+        tf.textAlignment = .center
+        tf.layer.masksToBounds = true
+        tf.placeholder = "0"
+        return tf
     }()
     
     lazy var escapeTimeStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [escapeTimeLabel, escapeTimeTextField])
+        let sv = UIStackView(arrangedSubviews: [escapeTimeLabel, minuteTextField, minuteLabel, secondTextField, secondLabel])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .horizontal
         sv.alignment = .fill
         sv.distribution = .fill
         sv.spacing = 10
         return sv
-    }()
-    
-    let toolbar: UIToolbar = {
-        let toolbar = UIToolbar()
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(doneButtonTapped))
-        let space = UIBarButtonItem(systemItem: .flexibleSpace)
-        let cancelButton = UIBarButtonItem(title: "취소", style: .done, target: self, action: #selector(cancelButtonTapped))
-        toolbar.setItems([cancelButton, space, doneButton], animated: true)
-        toolbar.tintColor = .navy
-        toolbar.isUserInteractionEnabled = true
-        return toolbar
     }()
     
     let hintLabel: UILabel = {
@@ -185,7 +217,29 @@ class RecordDetailView: UIView {
     let hintTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.backgroundColor = .customGray
+        tf.layer.cornerRadius = 8
+        tf.textAlignment = .center
+        tf.placeholder = "0"
         return tf
+    }()
+    
+    let hintlimitLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "개"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+    
+    lazy var hintStackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [hintLabel, hintTextField, hintlimitLabel])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .horizontal
+        sv.alignment = .fill
+        sv.distribution = .fill
+        sv.spacing = 10
+        return sv
     }()
     
     let textLabel: UILabel = {
@@ -200,13 +254,22 @@ class RecordDetailView: UIView {
         let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.backgroundColor = .white
-        tv.text = "내용을 입력해주세요."
         tv.layer.borderWidth = 1.0
         tv.layer.borderColor = UIColor.orange.cgColor
         tv.layer.cornerRadius = 8
         tv.layer.masksToBounds = true
 //        tv.isScrollEnabled = true
         return tv
+    }()
+    
+    lazy var textStackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [textLabel, textView])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.alignment = .fill
+        sv.distribution = .fill
+        sv.spacing = 10
+        return sv
     }()
     
     let bottomView: UIView = {
@@ -226,22 +289,19 @@ class RecordDetailView: UIView {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
     
-
-    
     lazy var mainStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [themeStackView, dateStackView, escapeTimeStackView, textLabel, textView])
+        let sv = UIStackView(arrangedSubviews: [themeStackView, dateStackView, escapeTimeStackView, hintStackView, textStackView])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.alignment = .leading
         sv.distribution = .fill
         sv.spacing = 20
-        sv.setCustomSpacing(10, after: textLabel)
         return sv
     }()
-
     
     // MARK: - Life Cycle
     
@@ -278,14 +338,13 @@ class RecordDetailView: UIView {
     }
     
     func configurePickerView() {
-        escapeTimeTextField.inputView = escapeTimePickerView
-        escapeTimeTextField.inputAccessoryView = toolbar
-        
         themeTextField.inputView = themePickerView
         themeTextField.inputAccessoryView = toolbar
     }
     
     func setConstraints() {
+        
+        let textViewWidth = self.frame.width - 40
         
         let height = self.datePicker.frame.height
         let width = self.datePicker.frame.width
@@ -316,14 +375,20 @@ class RecordDetailView: UIView {
             saveButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             saveButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
             
-            
             themeTextField.heightAnchor.constraint(equalToConstant: height),
             themeTextField.widthAnchor.constraint(equalToConstant: width),
             
-            escapeTimeTextField.heightAnchor.constraint(equalToConstant: height),
-            escapeTimeTextField.widthAnchor.constraint(equalToConstant: width),
+            minuteTextField.heightAnchor.constraint(equalToConstant: height),
+            minuteTextField.widthAnchor.constraint(equalToConstant: width / 3),
+            
+            secondTextField.heightAnchor.constraint(equalToConstant: height),
+            secondTextField.widthAnchor.constraint(equalToConstant: width / 3),
+            
+            hintTextField.heightAnchor.constraint(equalToConstant: height),
+            hintTextField.widthAnchor.constraint(equalToConstant: width / 3),
         
             textView.heightAnchor.constraint(equalToConstant: 200),
+            textView.widthAnchor.constraint(equalToConstant: textViewWidth)
         ])
         
         contentView.heightAnchor.constraint(equalTo: self.heightAnchor).priority = .defaultLow
@@ -333,12 +398,14 @@ class RecordDetailView: UIView {
     
     @objc func doneButtonTapped() {
         themeTextField.resignFirstResponder()
-        escapeTimeTextField.resignFirstResponder()
     }
     
     @objc func cancelButtonTapped() {
         themeTextField.resignFirstResponder()
-        escapeTimeTextField.resignFirstResponder()
+    }
+    
+    @objc func saveButtonTapped(_ sender: UIButton) {
+        delegate?.saveButtonTapped()
     }
 
     

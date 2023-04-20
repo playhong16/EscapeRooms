@@ -17,9 +17,13 @@ extension RecordData {
     }
     
     // 확장에서는 저장 속성을 만들 수 없다. 알지? 계산 속성이라고 생각해야함.
+    
+    @NSManaged public var theme: String?
     @NSManaged public var date: Date?
-    @NSManaged public var escapeTime: String?
+    @NSManaged public var minute: String?
+    @NSManaged public var second: String?
     @NSManaged public var result: Bool
+    @NSManaged public var hint: String?
     @NSManaged public var text: String?
 
 }

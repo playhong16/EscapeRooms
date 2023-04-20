@@ -10,6 +10,12 @@ import UIKit
 final class RecordViewController: UIViewController {
     
     // MARK: - Properties
+    
+    let recordDataManager = CoreDataManager.shared
+    let detailVC = RecordDetailViewController()
+    
+    // 테스트
+    let themesDataManager = ThemesManager()
 
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -27,6 +33,11 @@ final class RecordViewController: UIViewController {
         configureCV()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+    
     // MARK: - Setting
     
     func configureUI() {
@@ -34,11 +45,12 @@ final class RecordViewController: UIViewController {
         self.title = "기록"
         
         self.view.addSubview(collectionView)
+        themesDataManager.makeThemeData()
     }
     
     func configureNavi() {
         let image = UIImage(systemName: "square.and.pencil")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = .navy
     }
     
@@ -60,10 +72,10 @@ final class RecordViewController: UIViewController {
     
     // MARK: - Action
 
-    @objc func addTapped() {
-        let detailView = RecordDetailViewController()
-        detailView.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(detailView, animated: true)
+    @objc func addButtonTapped() {
+        let detailVC = RecordDetailViewController()
+        detailVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 
 }
@@ -77,12 +89,13 @@ extension RecordViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return recordDataManager.getRecordThemesFromCoreData().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCell", for: indexPath) as? RecordCell else { return UICollectionViewCell() }
-        cell.themeImage.image = UIImage(named: "강남목욕탕.jpeg")
+        let recordData = recordDataManager.getRecordThemesFromCoreData()
+        cell.recordData = recordData[indexPath.row]
         return cell
     }
     
@@ -109,7 +122,11 @@ extension RecordViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension RecordViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        detailVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(detailVC, animated: true)
+        detailVC.recordData = recordDataManager.getRecordThemesFromCoreData()[indexPath.row]
+    }
 }
 
 
