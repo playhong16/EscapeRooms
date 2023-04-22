@@ -15,12 +15,11 @@ final class ThemeViewController: UIViewController {
     
     private let tableView = UITableView()
     private let searchController = UISearchController(searchResultsController: nil)
-    
-    var themes: [Theme] = []
-    var filterThemes: [Theme] = []
+    private var filteredThemeData: [Theme] = []
+
     var likeThemes: [Theme] = []
     
-    var themesManager = ThemesManager()
+    let themeDataManager = ThemeDataManager.shared
     
     let likeButtonConfigure = UIImage.SymbolConfiguration(pointSize: 25)
     
@@ -40,7 +39,6 @@ final class ThemeViewController: UIViewController {
         configureNaviBar()
         configureSearchBar()
         configureTableView()
-        getThemeData()
 //        checkIfUserIsLoggedIn()
     }
     
@@ -123,10 +121,10 @@ final class ThemeViewController: UIViewController {
     
     // MARK: - Action
     
-    func getThemeData() {
-        themesManager.makeThemeData()
-        themes = themesManager.getThemeData()
-    }
+//    func getThemeData() {
+//        themesManager.makeThemeData()
+//        themes = themesManager.getThemeData()
+//    }
     
     // 사용자가 연결되었는지 확인
 //    func checkIfUserIsLoggedIn() {
@@ -146,7 +144,8 @@ final class ThemeViewController: UIViewController {
 extension ThemeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.isFiltering ? self.filterThemes.count : self.themes.count
+        let themeData = themeDataManager.getThemeData()
+        return self.isFiltering ? self.filteredThemeData.count : themeData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -159,23 +158,25 @@ extension ThemeViewController: UITableViewDataSource {
         cell.delegate = self
         
         if self.isFiltering {
-            cell.image.image = filterThemes[indexPath.section].image
-            cell.nameLabel.text = filterThemes[indexPath.section].name
-            cell.companyLabel.text = filterThemes[indexPath.section].company
-            cell.difficultyLabel.text = filterThemes[indexPath.section].difficulty
-            cell.playTimeLabel.text = filterThemes[indexPath.section].playTime
-            cell.personnelLabel.text = filterThemes[indexPath.section].personnel
-            cell.theme = themes[indexPath.section]
+            cell.image.image = filteredThemeData[indexPath.section].image
+            cell.nameLabel.text = filteredThemeData[indexPath.section].name
+            cell.companyLabel.text = filteredThemeData[indexPath.section].company
+            cell.difficultyLabel.text = filteredThemeData[indexPath.section].difficulty
+            cell.playTimeLabel.text = filteredThemeData[indexPath.section].playTime
+            cell.personnelLabel.text = filteredThemeData[indexPath.section].personnel
+            let themeData = themeDataManager.getThemeData()
+            cell.theme = themeData[indexPath.section]
             return cell
         
         } else {
-            cell.image.image = themes[indexPath.section].image
-            cell.nameLabel.text = themes[indexPath.section].name
-            cell.companyLabel.text = themes[indexPath.section].company
-            cell.difficultyLabel.text = themes[indexPath.section].difficulty
-            cell.playTimeLabel.text = themes[indexPath.section].playTime
-            cell.personnelLabel.text = themes[indexPath.section].personnel
-            cell.theme = themes[indexPath.section]
+            let themeData = themeDataManager.getThemeData()
+            cell.image.image = themeData[indexPath.section].image
+            cell.nameLabel.text = themeData[indexPath.section].name
+            cell.companyLabel.text = themeData[indexPath.section].company
+            cell.difficultyLabel.text = themeData[indexPath.section].difficulty
+            cell.playTimeLabel.text = themeData[indexPath.section].playTime
+            cell.personnelLabel.text = themeData[indexPath.section].personnel
+            cell.theme = themeData[indexPath.section]
             return cell
         }
         
@@ -198,7 +199,8 @@ extension ThemeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = ThemeDetailViewContoller()
-        detailVC.themes = themes[indexPath.section]
+        let themeData = themeDataManager.getThemeData()
+        detailVC.themes = themeData[indexPath.section]
         // ThemeDetailView 로 넘어가면서 탭바를 숨긴다.
         detailVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(detailVC, animated: true)
@@ -212,8 +214,8 @@ extension ThemeViewController: ThemeCellDelegate {
         print("DEBUG: 좋아요 버튼이 눌린 셀의 정보를 전달합니다.")
         cell.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: likeButtonConfigure), for: .normal)
         cell.likeButton.tintColor = .orange
-        themesManager.likeThemes.append(theme)
-        print(themesManager.likeThemes.count)
+//        themesManager.likeThemes.append(theme)
+//        print(themesManager.likeThemes.count)
     }
     
     func removeLikeTheme(_ cell: ThemeCell, remove theme: Theme) {
@@ -233,8 +235,9 @@ extension ThemeViewController: UISearchResultsUpdating {
     }
     
     func filteredContentForSearchText(_ text: String) {
-        filterThemes = themes.filter({ (themes) -> Bool in
-            return themes.name.lowercased().contains(text.lowercased()) || themes.name.lowercased().contains(text.lowercased())
+        let themeData = themeDataManager.getThemeData()
+        filteredThemeData = themeData.filter({ (themeData) -> Bool in
+            return themeData.name.lowercased().contains(text.lowercased()) || themeData.name.lowercased().contains(text.lowercased())
         })
         
         tableView.reloadData()

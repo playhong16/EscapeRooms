@@ -16,6 +16,7 @@
 		052BB24429E70B760009E829 /* RecordData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB24229E70B760009E829 /* RecordData+CoreDataClass.swift */; };
 		052BB24529E70B760009E829 /* RecordData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB24329E70B760009E829 /* RecordData+CoreDataProperties.swift */; };
 		052BB24829E7D1B00009E829 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB24729E7D1B00009E829 /* UIColor.swift */; };
+		052BB24C29F3B1160009E829 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052BB24B29F3B1160009E829 /* TabBarController.swift */; };
 		0544D53D29ACC2F700394E5E /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544D53C29ACC2F700394E5E /* LikesViewController.swift */; };
 		0544D53F29AF594500394E5E /* LikesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0544D53E29AF594500394E5E /* LikesCell.swift */; };
 		0544D56329B97DFC00394E5E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0544D56229B97DFC00394E5E /* GoogleService-Info.plist */; };
@@ -42,7 +43,7 @@
 		05AEC7CF29A707EC007944A0 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEC7CE29A707EC007944A0 /* ThemeViewController.swift */; };
 		05AEC7D129A70A3E007944A0 /* ThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEC7D029A70A3E007944A0 /* ThemeCell.swift */; };
 		05AEC7D829A7780B007944A0 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEC7D729A7780B007944A0 /* Theme.swift */; };
-		05AEC7DA29A7784B007944A0 /* ThemesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEC7D929A7784B007944A0 /* ThemesManager.swift */; };
+		05AEC7DA29A7784B007944A0 /* ThemeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEC7D929A7784B007944A0 /* ThemeDataManager.swift */; };
 		05AEC7DC29A7B452007944A0 /* ThemeDetailViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEC7DB29A7B452007944A0 /* ThemeDetailViewContoller.swift */; };
 		05AEC7DE29A7B4DA007944A0 /* ThemeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEC7DD29A7B4DA007944A0 /* ThemeDetailView.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		052BB24229E70B760009E829 /* RecordData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		052BB24329E70B760009E829 /* RecordData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		052BB24729E7D1B00009E829 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		052BB24B29F3B1160009E829 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0544D53C29ACC2F700394E5E /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		0544D53E29AF594500394E5E /* LikesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesCell.swift; sourceTree = "<group>"; };
 		0544D56229B97DFC00394E5E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -74,7 +76,7 @@
 		05AEC7CE29A707EC007944A0 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		05AEC7D029A70A3E007944A0 /* ThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCell.swift; sourceTree = "<group>"; };
 		05AEC7D729A7780B007944A0 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		05AEC7D929A7784B007944A0 /* ThemesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesManager.swift; sourceTree = "<group>"; };
+		05AEC7D929A7784B007944A0 /* ThemeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDataManager.swift; sourceTree = "<group>"; };
 		05AEC7DB29A7B452007944A0 /* ThemeDetailViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailViewContoller.swift; sourceTree = "<group>"; };
 		05AEC7DD29A7B4DA007944A0 /* ThemeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +109,29 @@
 				052BB24729E7D1B00009E829 /* UIColor.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		052BB24929F3B09F0009E829 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				0544D57D29B9AA5F00394E5E /* SignUpViewController.swift */,
+				0544D57B29B998B700394E5E /* LoginViewController.swift */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		052BB24A29F3B0A50009E829 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				05AEC7CE29A707EC007944A0 /* ThemeViewController.swift */,
+				0544D53C29ACC2F700394E5E /* LikesViewController.swift */,
+				0544D58129BA055500394E5E /* MyInformationViewController.swift */,
+				052BB23229D571700009E829 /* RecordViewController.swift */,
+				05AEC7DB29A7B452007944A0 /* ThemeDetailViewContoller.swift */,
+				052BB23C29DF0B440009E829 /* RecordDetailViewController.swift */,
+				052BB24B29F3B1160009E829 /* TabBarController.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		05AEC7A529A631E4007944A0 = {
@@ -142,14 +167,8 @@
 		05AEC7C829A631F2007944A0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				05AEC7CE29A707EC007944A0 /* ThemeViewController.swift */,
-				05AEC7DB29A7B452007944A0 /* ThemeDetailViewContoller.swift */,
-				0544D53C29ACC2F700394E5E /* LikesViewController.swift */,
-				0544D57B29B998B700394E5E /* LoginViewController.swift */,
-				0544D57D29B9AA5F00394E5E /* SignUpViewController.swift */,
-				0544D58129BA055500394E5E /* MyInformationViewController.swift */,
-				052BB23229D571700009E829 /* RecordViewController.swift */,
-				052BB23C29DF0B440009E829 /* RecordDetailViewController.swift */,
+				052BB24A29F3B0A50009E829 /* Core */,
+				052BB24929F3B09F0009E829 /* other */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -184,7 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				05AEC7D729A7780B007944A0 /* Theme.swift */,
-				05AEC7D929A7784B007944A0 /* ThemesManager.swift */,
+				05AEC7D929A7784B007944A0 /* ThemeDataManager.swift */,
 				052BB23E29E669E40009E829 /* CoreDataManager.swift */,
 				052BB24229E70B760009E829 /* RecordData+CoreDataClass.swift */,
 				052BB24329E70B760009E829 /* RecordData+CoreDataProperties.swift */,
@@ -289,6 +308,7 @@
 				052BB23329D571700009E829 /* RecordViewController.swift in Sources */,
 				05AEC7BC29A631E4007944A0 /* EscapeRooms.xcdatamodeld in Sources */,
 				0544D58229BA055500394E5E /* MyInformationViewController.swift in Sources */,
+				052BB24C29F3B1160009E829 /* TabBarController.swift in Sources */,
 				052BB24529E70B760009E829 /* RecordData+CoreDataProperties.swift in Sources */,
 				052BB23929DF05AF0009E829 /* RecordDetailView.swift in Sources */,
 				05AEC7B229A631E4007944A0 /* AppDelegate.swift in Sources */,
@@ -302,7 +322,7 @@
 				05AEC7B429A631E4007944A0 /* SceneDelegate.swift in Sources */,
 				05AEC7D829A7780B007944A0 /* Theme.swift in Sources */,
 				0544D57E29B9AA5F00394E5E /* SignUpViewController.swift in Sources */,
-				05AEC7DA29A7784B007944A0 /* ThemesManager.swift in Sources */,
+				05AEC7DA29A7784B007944A0 /* ThemeDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

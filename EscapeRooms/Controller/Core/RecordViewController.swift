@@ -12,10 +12,8 @@ final class RecordViewController: UIViewController {
     // MARK: - Properties
     
     let recordDataManager = CoreDataManager.shared
+    let themeDataManager = ThemeDataManager.shared
     let detailVC = RecordDetailViewController()
-    
-    // 테스트
-    let themesDataManager = ThemesManager()
 
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -41,11 +39,9 @@ final class RecordViewController: UIViewController {
     // MARK: - Setting
     
     func configureUI() {
-        view.backgroundColor = .white
         self.title = "기록"
-        
+//        view.backgroundColor = .white
         self.view.addSubview(collectionView)
-        themesDataManager.makeThemeData()
     }
     
     func configureNavi() {
@@ -75,6 +71,7 @@ final class RecordViewController: UIViewController {
     @objc func addButtonTapped() {
         let detailVC = RecordDetailViewController()
         detailVC.hidesBottomBarWhenPushed = true
+        detailVC.title = "기록하기"
         navigationController?.pushViewController(detailVC, animated: true)
     }
 
@@ -95,6 +92,8 @@ extension RecordViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCell", for: indexPath) as? RecordCell else { return UICollectionViewCell() }
         let recordData = recordDataManager.getRecordThemesFromCoreData()
+        let imageName = recordData[indexPath.row].theme ?? "photo"
+        cell.themeImage.image = UIImage(named: imageName)
         cell.recordData = recordData[indexPath.row]
         return cell
     }
@@ -104,8 +103,8 @@ extension RecordViewController: UICollectionViewDataSource {
 
 extension RecordViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size: CGFloat = collectionView.frame.width / 3 - 3
-        let height: CGFloat = size + 20
+        let size: CGFloat = collectionView.frame.width / 2 
+        let height: CGFloat = 200
         return CGSize(width: size, height: height)
     }
     

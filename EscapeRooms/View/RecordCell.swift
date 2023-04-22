@@ -11,7 +11,7 @@ class RecordCell: UICollectionViewCell {
     
     var recordData: RecordData? {
         didSet {
-            setUIWithData()
+            configureCell()
         }
     }
     
@@ -19,7 +19,13 @@ class RecordCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .white
-        label.textAlignment  = .center
+        return label
+    }()
+    
+    let themeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .white
         return label
     }()
     
@@ -31,15 +37,15 @@ class RecordCell: UICollectionViewCell {
         return iv
     }()
     
-    lazy var mainStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [dateLabel, themeImage])
-        sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.axis = .vertical
-        sv.alignment = .fill
-        sv.distribution = .fill
-        sv.spacing = 5
-        return sv
-    }()
+//    lazy var mainStackView: UIStackView = {
+//        let sv = UIStackView(arrangedSubviews: [themeImage, dateLabel])
+//        sv.translatesAutoresizingMaskIntoConstraints = false
+//        sv.axis = .horizontal
+//        sv.alignment = .fill
+//        sv.distribution = .fill
+//        sv.spacing = 5
+//        return sv
+//    }()
     
     // MARK: - Life Cycle
 
@@ -63,24 +69,36 @@ class RecordCell: UICollectionViewCell {
     func setupUI() {
 //        self.backgroundColor = .systemPink
         print("DEBUG: RecordCell UI Setting!")
-        contentView.addSubview(mainStackView)
+        contentView.addSubview(themeImage)
+//        self.addSubview(dateLabel)
+//        self.addSubview(themeLabel)
     }
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: self.topAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+//            mainStackView.topAnchor.constraint(equalTo: self.topAnchor),
+//            mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            themeImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            themeImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            themeImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            themeImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 20),
+            
+//            dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+//            dateLabel.leadingAnchor.constraint(equalTo: themeImage.trailingAnchor, constant: 10),
+//
+//            themeLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 10),
+//            themeLabel.leadingAnchor.constraint(equalTo: themeImage.trailingAnchor, constant: 10)
         ])
     }
     
-    func setUIWithData() {
+    func configureCell() {
         let date = recordData?.date
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy. MM. dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         let convertDate = dateFormatter.string(from: date!)
         dateLabel.text = convertDate
-        themeImage.image = UIImage(named: "강남목욕탕.jpeg")
+        themeLabel.text = recordData?.theme
     }
 }

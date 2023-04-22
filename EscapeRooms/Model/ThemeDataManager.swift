@@ -7,15 +7,14 @@
 
 import UIKit
 
-class ThemesManager {
+final class ThemeDataManager {
     
-    var themes: [Theme] = []
+    static let shared = ThemeDataManager()
+    private init() {}
     
-    var likeThemes: [Theme] = []
-    
-    func makeThemeData() {
-        themes = [
-            Theme(image: UIImage(named: "그림자없는상자.jpeg"), name: "그림자 없는 상자", company: "방탈출, 단편선", difficulty: "🎮🎮🎮", playTime: "75분" , personnel: "2인 ~ 4인",
+    func makeThemeData() -> [Theme] {
+        let themeData = [
+            Theme(image: UIImage(named: "그림자 없는 상자.jpeg"), name: "그림자 없는 상자", company: "방탈출, 단편선", difficulty: "🎮🎮🎮", playTime: "75분" , personnel: "2인 ~ 4인",
                   story: """
                   "미안해 누나. 근데 내가 맞았어.
                   결국 끝도, 시작도 누나한테 달렸어."
@@ -52,7 +51,7 @@ class ThemesManager {
 
                   어떻게든 들어가서 최고의 컨디션을 만들어 나와야 한다!
                   """, price: "25000원", address: nil),
-            Theme(image: UIImage(named: "꿈의공장.jpeg"), name: "꿈의 공장", company: "비트포비아 홍대 던전", difficulty: "🎮🎮🎮", playTime: "60분" , personnel: "2인 ~ 5인",
+            Theme(image: UIImage(named: "꿈의 공장.jpeg"), name: "꿈의 공장", company: "비트포비아 홍대 던전", difficulty: "🎮🎮🎮", playTime: "60분" , personnel: "2인 ~ 5인",
                   story: """
                   "OK 컷! 모두 수고하셨습니다!!!"
                   이게 무슨 소리냐고요? 꿈 제작이 완료됐음을 알리는 소리에요!
@@ -84,26 +83,28 @@ class ThemesManager {
                   "자..미끼는 던졌고, 오늘 밤 잠입 취재 시작이다!"
                   """, price: "25000원", address: nil)
         ]
+        return themeData
     }
     
     func getThemeData() -> [Theme] {
-        return themes
+        let themeData = makeThemeData()
+        return themeData
     }
     
-    func getLikeThemesData() -> [Theme] {
-        print(likeThemes)
-        return likeThemes
-    }
+//    func getLikeThemesData() -> [Theme] {
+//        print(likeThemes)
+//        return likeThemes
+//    }
     
-    func updateLikeThemeData(_ data: Theme) {
-        print(#function)
-        likeThemes.append(data)
-        print(likeThemes.count)
-    }
+//    func updateLikeThemeData(_ data: Theme) {
+//        print(#function)
+//        likeThemes.append(data)
+//        print(likeThemes.count)
+//    }
     
-    func removeLikeThemeData(_ Index: Int) {
-        print(#function)
-        likeThemes.remove(at: Index)
-        print(likeThemes.count)
-    }
+//    func removeLikeThemeData(_ Index: Int) {
+//        print(#function)
+//        likeThemes.remove(at: Index)
+//        print(likeThemes.count)
+//    }
 }

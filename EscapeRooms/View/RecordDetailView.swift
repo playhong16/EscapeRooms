@@ -372,8 +372,9 @@ class RecordDetailView: UIView {
             bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             bottomView.heightAnchor.constraint(equalToConstant: 100),
             
-            saveButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
-            saveButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
+            saveButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
+            saveButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 20),
+            saveButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -20),
             
             themeTextField.heightAnchor.constraint(equalToConstant: height),
             themeTextField.widthAnchor.constraint(equalToConstant: width),

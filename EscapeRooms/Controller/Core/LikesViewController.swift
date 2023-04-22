@@ -13,8 +13,6 @@ final class LikesViewController: UIViewController {
 
     private var tableView = UITableView()
     var likeThemes: [Theme] = []
-    var themesManager = ThemesManager()
-
     
     // MARK: - LifeCycle
 
@@ -65,7 +63,7 @@ final class LikesViewController: UIViewController {
     }
     
     func getData() {
-        likeThemes = themesManager.getLikeThemesData()
+//        likeThemes = themesManager.getLikeThemesData()
         print(likeThemes)
         tableView.reloadData()
     }

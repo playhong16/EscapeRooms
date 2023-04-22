@@ -13,6 +13,7 @@ class RecordDetailViewController: UIViewController {
     
     private let detailView = RecordDetailView()
     let recordDataManager = CoreDataManager.shared
+    let themeDataManager = ThemeDataManager.shared
     
     var recordData: RecordData? {
         didSet {
@@ -20,7 +21,15 @@ class RecordDetailViewController: UIViewController {
             configureUI()
         }
     }
-    let themeData: [String] = ["그림자 없는 상자", "MAYDAY", "Silent", "전래동 살인사건", "강남 목욕탕"]
+    
+    lazy var deleteAlert: UIAlertController = {
+        let alert = UIAlertController(title: "탈출 기록 삭제", message: "기록을 삭제하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "삭제", style: .destructive) { (action) in
+            self.deleteButtonAction()
+        })
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        return alert
+    }()
     
     // MARK: - LifeCycle
     
@@ -44,7 +53,8 @@ class RecordDetailViewController: UIViewController {
             let second = recordData.second
             let hint = recordData.hint
             let text = recordData.text
-        
+            
+            self.title = "수정하기"
             detailView.themeTextField.text = theme
             detailView.datePicker.date = date
             detailView.minuteTextField.text = minute
@@ -74,6 +84,10 @@ class RecordDetailViewController: UIViewController {
     // MARK: - Action
     
     @objc func deleteButtonTapped() {
+        present(deleteAlert, animated: true)
+    }
+    
+    func deleteButtonAction() {
         if let recordData = self.recordData {
             recordDataManager.deleteRecord(data: recordData) {
                 print("DEBUG: delete Record Data Success!!")
@@ -92,15 +106,17 @@ extension RecordDetailViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            return themeData.count
+        return themeDataManager.makeThemeData().count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            return themeData[row]
+        let themeData = themeDataManager.getThemeData()
+        return themeData[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            let selectedData = themeData[row]
+        let themeData = themeDataManager.getThemeData()
+        let selectedData = themeData[row].name
             detailView.themeTextField.text = selectedData
             print("DEBUG: Selected: \(selectedData)")
     }
@@ -116,6 +132,7 @@ extension RecordDetailViewController: UIPickerViewDelegate {
 }
 
 extension RecordDetailViewController: SaveButtonDelegate {
+    
     func saveButtonTapped() {
         print("DEBUG:UpdateButton Tapped")
         if let recordData = self.recordData {
