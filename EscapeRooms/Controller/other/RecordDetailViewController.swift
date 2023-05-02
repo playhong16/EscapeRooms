@@ -99,6 +99,9 @@ class RecordDetailViewController: UIViewController {
     
 }
 
+// MARK: - Extension
+
+
 extension RecordDetailViewController: UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -131,7 +134,7 @@ extension RecordDetailViewController: UIPickerViewDelegate {
     
 }
 
-extension RecordDetailViewController: SaveButtonDelegate {
+extension RecordDetailViewController: RecordDetailViewDelegate {
     
     func saveButtonTapped() {
         print("DEBUG:UpdateButton Tapped")

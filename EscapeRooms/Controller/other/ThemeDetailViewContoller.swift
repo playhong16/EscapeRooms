@@ -20,7 +20,7 @@ final class ThemeDetailViewContoller: UIViewController {
     // 지도에 표시 할 좌표 설정
     let coordinate = CLLocationCoordinate2D(latitude: 37.4974033, longitude: 127.0310522)
     
-    var themes: Theme?
+    var themeData: Theme?
     
     // MARK: - LifeCycle
     
@@ -39,15 +39,15 @@ final class ThemeDetailViewContoller: UIViewController {
     // MARK: - Setting
     
     func setupUI() {
-        title = themes?.name
-        detailView.image.image = themes?.image
-        detailView.nameLabel.text = themes?.name
-        detailView.companyLabel.text = themes?.company
-        detailView.difficultyLabel.text = themes?.difficulty
-        detailView.playTimeLabel.text = themes?.playTime
-        detailView.personnelLabel.text = themes?.personnel
-        detailView.storyTextView.text = themes?.story
-        detailView.priceLabel.text = themes?.price
+        title = themeData?.name
+        detailView.image.image = themeData?.image
+        detailView.nameLabel.text = themeData?.name
+        detailView.companyLabel.text = themeData?.company
+        detailView.difficultyLabel.text = themeData?.difficulty
+        detailView.playTimeLabel.text = themeData?.playTime
+        detailView.personnelLabel.text = themeData?.personnel
+        detailView.storyTextView.text = themeData?.story
+        detailView.priceLabel.text = themeData?.price
     }
     
     func configureDelegate() {

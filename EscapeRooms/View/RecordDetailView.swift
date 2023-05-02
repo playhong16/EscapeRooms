@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SaveButtonDelegate {
+protocol RecordDetailViewDelegate {
     func saveButtonTapped()
 }
 
@@ -17,7 +17,7 @@ class RecordDetailView: UIView {
     
     // MARK: - Properties
     
-    var delegate: SaveButtonDelegate?
+    var delegate: RecordDetailViewDelegate?
     
     let scrollView: UIScrollView = {
         let sv = UIScrollView()

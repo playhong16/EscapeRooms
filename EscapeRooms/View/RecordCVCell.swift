@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecordCell: UICollectionViewCell {
+class RecordCVCell: UICollectionViewCell {
     
     var recordData: RecordData? {
         didSet {
@@ -34,6 +34,8 @@ class RecordCell: UICollectionViewCell {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleToFill
         iv.backgroundColor = .blue
+        iv.layer.cornerRadius = 8
+        iv.layer.masksToBounds = true
         return iv
     }()
     
@@ -59,6 +61,7 @@ class RecordCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // 컬렉션 뷰는 왜 updateConstraints 주기에서 제약을 걸어줘도 안걸릴까? ..
     override func updateConstraints() {
         setConstraints()
         super.updateConstraints()
@@ -68,7 +71,6 @@ class RecordCell: UICollectionViewCell {
 
     func setupUI() {
 //        self.backgroundColor = .systemPink
-        print("DEBUG: RecordCell UI Setting!")
         contentView.addSubview(themeImage)
 //        self.addSubview(dateLabel)
 //        self.addSubview(themeLabel)
@@ -80,10 +82,10 @@ class RecordCell: UICollectionViewCell {
 //            mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
 //            mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
 //            mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            themeImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            themeImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            themeImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            themeImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 20),
+            themeImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            themeImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            themeImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            themeImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
             
 //            dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
 //            dateLabel.leadingAnchor.constraint(equalTo: themeImage.trailingAnchor, constant: 10),

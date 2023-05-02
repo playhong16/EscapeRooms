@@ -12,7 +12,6 @@ final class LikesViewController: UIViewController {
     // MARK: - Propertis
 
     private var tableView = UITableView()
-    var likeThemes: [Theme] = []
     
     // MARK: - LifeCycle
 
@@ -20,14 +19,11 @@ final class LikesViewController: UIViewController {
         super.viewDidLoad()
         configureNaviBar()
         configureTableView()
-        getData()
     }
     
     // MARK: - Setting
     
     func configureNaviBar() {
-        self.title = "찜"
-        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor(red: 29/255, green: 45/255, blue: 68/255, alpha: 1)
@@ -61,12 +57,7 @@ final class LikesViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
-    
-    func getData() {
-//        likeThemes = themesManager.getLikeThemesData()
-        print(likeThemes)
-        tableView.reloadData()
-    }
+
     
     
     // MARK: - Action
@@ -85,7 +76,8 @@ extension LikesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return likeThemes.count
+//        return likeThemes.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,12 +85,12 @@ extension LikesViewController: UITableViewDataSource {
         print("DEBUG: Transfer Cell data")
         let cell = tableView.dequeueReusableCell(withIdentifier: "LikesCell", for: indexPath) as! LikesCell
         
-        cell.image.image = likeThemes[indexPath.row].image
-        cell.nameLabel.text = likeThemes[indexPath.row].name
-        cell.companyLabel.text = likeThemes[indexPath.row].company
-        cell.difficultyLabel.text = likeThemes[indexPath.row].difficulty
-        cell.playTimeLabel.text = likeThemes[indexPath.row].playTime
-        cell.personnelLabel.text = likeThemes[indexPath.row].personnel
+//        cell.image.image = likeThemes[indexPath.row].image
+//        cell.nameLabel.text = likeThemes[indexPath.row].name
+//        cell.companyLabel.text = likeThemes[indexPath.row].company
+//        cell.difficultyLabel.text = likeThemes[indexPath.row].difficulty
+//        cell.playTimeLabel.text = likeThemes[indexPath.row].playTime
+//        cell.personnelLabel.text = likeThemes[indexPath.row].personnel
         
         return cell
     }
@@ -120,7 +112,7 @@ extension LikesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = ThemeDetailViewContoller()
-        detailVC.themes = likeThemes[indexPath.section]
+//        detailVC.themes = likeThemes[indexPath.section]
         detailVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(detailVC, animated: true)
     }

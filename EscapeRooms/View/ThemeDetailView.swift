@@ -17,16 +17,17 @@ final class ThemeDetailView: UIView {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = .black
         // 스크롤 인디케이터(스크롤바 색) 스타일 변경
         scrollView.indicatorStyle = .black
+//        scrollView.sizeToFit()
         return scrollView
     }()
 
-    let mainView: UIView = {
+    let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         return view
     }()
 
@@ -39,21 +40,21 @@ final class ThemeDetailView: UIView {
     let firstLine: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+        view.backgroundColor = .customGray
         return view
     }()
     
     let secondLine: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+        view.backgroundColor = .customGray
         return view
     }()
     
     let thirdLine: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+        view.backgroundColor = .customGray
         return view
     }()
     
@@ -61,7 +62,7 @@ final class ThemeDetailView: UIView {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
        label.font = UIFont.boldSystemFont(ofSize: 22)
-       label.textColor = .black
+       label.textColor = .white
        return label
    }()
    
@@ -77,7 +78,7 @@ final class ThemeDetailView: UIView {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
        label.font = UIFont.systemFont(ofSize: 14)
-       label.textColor = .black
+       label.textColor = .white
        return label
    }()
    
@@ -85,7 +86,7 @@ final class ThemeDetailView: UIView {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
        label.font = UIFont.systemFont(ofSize: 14)
-       label.textColor = .black
+       label.textColor = .white
        return label
    }()
    
@@ -93,7 +94,7 @@ final class ThemeDetailView: UIView {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
        label.font = UIFont.systemFont(ofSize: 14)
-       label.textColor = .black
+       label.textColor = .white
        return label
    }()
     
@@ -112,16 +113,18 @@ final class ThemeDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.text = "줄거리"
-        label.textColor = .black
+        label.textColor = .white
         return label
     }()
     
     let storyTextView: UITextView = {
        let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.font = UIFont.systemFont(ofSize: 14)
-        tv.backgroundColor = .white
-        tv.textColor = .black
+        tv.font = UIFont.systemFont(ofSize: 16)
+        tv.backgroundColor = .black
+        tv.textColor = .white
+        tv.sizeToFit()
+        tv.isScrollEnabled = false
         return tv
     }()
     
@@ -130,7 +133,7 @@ final class ThemeDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.text = "가격 정보"
-        label.textColor = .black
+        label.textColor = .white
         return label
     }()
     
@@ -139,7 +142,7 @@ final class ThemeDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16)
         label.text = "인당 가격"
-        label.textColor = .gray
+        label.textColor = .white
         return label
     }()
     
@@ -147,7 +150,7 @@ final class ThemeDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18)
-        label.textColor = .black
+        label.textColor = .white
         return label
     }()
     
@@ -156,7 +159,7 @@ final class ThemeDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.text = "위치 정보"
-        label.textColor = .black
+        label.textColor = .white
         return label
     }()
     
@@ -173,7 +176,7 @@ final class ThemeDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.text = "서울특별시 강남구 역삼동 824-25 대우디오빌플러스 지하 1층 111호"
-        label.textColor = .black
+        label.textColor = .white
         return label
     }()
     
@@ -189,7 +192,7 @@ final class ThemeDetailView: UIView {
     let reservationButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(red: 250/255, green: 149/255, blue: 0/255, alpha: 1)
+        button.backgroundColor = .customOrange
         button.setTitle("예약하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -242,111 +245,95 @@ final class ThemeDetailView: UIView {
         print("DEBUG: DetailView setupUI()")
         self.addSubview(scrollView)
         
-        scrollView.addSubview(mainView)
-        mainView.addSubview(image)
-        mainView.addSubview(firstLine)
-        mainView.addSubview(nameLabel)
-        mainView.addSubview(companyLabel)
-        mainView.addSubview(stackView)
-        mainView.addSubview(personnelLabel)
-        mainView.addSubview(secondLine)
-        mainView.addSubview(storyLabel)
-        mainView.addSubview(storyTextView)
-        mainView.addSubview(priceTitleLabel)
-        mainView.addSubview(priceSubLabel)
-        mainView.addSubview(priceLabel)
-        mainView.addSubview(thirdLine)
-        mainView.addSubview(locationTitleLabel)
-        mainView.addSubview(mapView)
-        mainView.addSubview(locationLabel)
-        mainView.addSubview(bottomView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(image)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(companyLabel)
+        contentView.addSubview(stackView)
+        contentView.addSubview(personnelLabel)
+        contentView.addSubview(storyLabel)
+        contentView.addSubview(storyTextView)
+        contentView.addSubview(priceTitleLabel)
+        contentView.addSubview(priceSubLabel)
+        contentView.addSubview(priceLabel)
+        contentView.addSubview(locationTitleLabel)
+        contentView.addSubview(mapView)
+        contentView.addSubview(locationLabel)
+        contentView.addSubview(bottomView)
         bottomView.addSubview(bottomButtonStackView)
     }
     
     func setConstraints() {
         
-        let heightConstraint = mainView.heightAnchor.constraint(equalToConstant: 1500)
-        heightConstraint.priority = UILayoutPriority(250)
+        let bottomViewHeight: CGFloat = 100
         
         reservationButton.setContentHuggingPriority(UILayoutPriority(250), for: .horizontal)
         likeButton.setContentHuggingPriority(UILayoutPriority(251), for: .horizontal)
         
         NSLayoutConstraint.activate([
-            
             scrollView.topAnchor.constraint(equalTo: self.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            scrollView.widthAnchor.constraint(equalTo: self.widthAnchor),
         
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            mainView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            mainView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            mainView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            mainView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            mainView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             // 수직 스크롤을 위한 설정
-            heightConstraint,
+//            heightConstraint,
             
-            image.topAnchor.constraint(equalTo: mainView.topAnchor),
-            image.widthAnchor.constraint(equalTo: mainView.widthAnchor),
+            image.topAnchor.constraint(equalTo: contentView.topAnchor),
+            image.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             image.heightAnchor.constraint(equalToConstant: 450),
             
-            nameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 30),
-            nameLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            nameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 10),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
             companyLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            companyLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            companyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
             stackView.topAnchor.constraint(equalTo: companyLabel.bottomAnchor, constant: 5),
-            stackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
 
             personnelLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5),
-            personnelLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            personnelLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
-            firstLine.topAnchor.constraint(equalTo: personnelLabel.bottomAnchor, constant: 30),
-            firstLine.widthAnchor.constraint(equalTo: mainView.widthAnchor),
-            firstLine.heightAnchor.constraint(equalToConstant: 0.7),
-            
-            storyLabel.topAnchor.constraint(equalTo: firstLine.bottomAnchor, constant: 30),
-            storyLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            storyLabel.topAnchor.constraint(equalTo: personnelLabel.bottomAnchor, constant: 30),
+            storyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
             storyTextView.topAnchor.constraint(equalTo: storyLabel.bottomAnchor, constant: 10),
-            storyTextView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
-            storyTextView.widthAnchor.constraint(equalTo: mainView.widthAnchor, constant: -40),
-            storyTextView.heightAnchor.constraint(equalToConstant: 250),
+            storyTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            storyTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             
-            secondLine.topAnchor.constraint(equalTo: storyTextView.bottomAnchor, constant: 30),
-            secondLine.widthAnchor.constraint(equalTo: mainView.widthAnchor),
-            secondLine.heightAnchor.constraint(equalToConstant: 0.7),
-            
-            priceTitleLabel.topAnchor.constraint(equalTo: secondLine.bottomAnchor, constant: 30),
-            priceTitleLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            priceTitleLabel.topAnchor.constraint(equalTo: storyTextView.bottomAnchor, constant: 30),
+            priceTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
             priceSubLabel.topAnchor.constraint(equalTo: priceTitleLabel.bottomAnchor, constant: 5),
-            priceSubLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            priceSubLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
             priceLabel.topAnchor.constraint(equalTo: priceSubLabel.bottomAnchor, constant: 10),
-            priceLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
-            thirdLine.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 30),
-            thirdLine.widthAnchor.constraint(equalTo: mainView.widthAnchor),
-            thirdLine.heightAnchor.constraint(equalToConstant: 0.7),
-            
-            locationTitleLabel.topAnchor.constraint(equalTo: thirdLine.bottomAnchor, constant: 30),
-            locationTitleLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
+            locationTitleLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 30),
+            locationTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
             mapView.topAnchor.constraint(equalTo: locationTitleLabel.bottomAnchor, constant: 10),
-            mapView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
-            mapView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -20),
+            mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             mapView.heightAnchor.constraint(equalToConstant: 200),
-            
+    
             locationLabel.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 10),
-            locationLabel.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 20),
-            
+            locationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            locationLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -bottomViewHeight),
+        
             bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            bottomView.heightAnchor.constraint(equalToConstant: 100),
+            bottomView.heightAnchor.constraint(equalToConstant: bottomViewHeight),
             
             bottomButtonStackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
             bottomButtonStackView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),

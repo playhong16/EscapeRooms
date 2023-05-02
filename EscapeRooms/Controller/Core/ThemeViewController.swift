@@ -45,8 +45,6 @@ final class ThemeViewController: UIViewController {
     // MARK: - Setting
     
     func configureNaviBar() {
-        self.title = "테마"
-        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor.navy
@@ -102,7 +100,7 @@ final class ThemeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.register(ThemeCell.self, forCellReuseIdentifier: "ThemeCell")
+//        tableView.register(ThemeCell.self, forCellReuseIdentifier: "ThemeCell")
         
         view.addSubview(tableView)
         
@@ -154,31 +152,32 @@ extension ThemeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("DEBUG: Transfer Cell data")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeCell", for: indexPath) as! ThemeCell
-        cell.delegate = self
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeCell", for: indexPath)
+//        cell.delegate = self
+        return cell
         
-        if self.isFiltering {
-            cell.image.image = filteredThemeData[indexPath.section].image
-            cell.nameLabel.text = filteredThemeData[indexPath.section].name
-            cell.companyLabel.text = filteredThemeData[indexPath.section].company
-            cell.difficultyLabel.text = filteredThemeData[indexPath.section].difficulty
-            cell.playTimeLabel.text = filteredThemeData[indexPath.section].playTime
-            cell.personnelLabel.text = filteredThemeData[indexPath.section].personnel
-            let themeData = themeDataManager.getThemeData()
-            cell.theme = themeData[indexPath.section]
-            return cell
-        
-        } else {
-            let themeData = themeDataManager.getThemeData()
-            cell.image.image = themeData[indexPath.section].image
-            cell.nameLabel.text = themeData[indexPath.section].name
-            cell.companyLabel.text = themeData[indexPath.section].company
-            cell.difficultyLabel.text = themeData[indexPath.section].difficulty
-            cell.playTimeLabel.text = themeData[indexPath.section].playTime
-            cell.personnelLabel.text = themeData[indexPath.section].personnel
-            cell.theme = themeData[indexPath.section]
-            return cell
-        }
+//        if self.isFiltering {
+//            cell.image.image = filteredThemeData[indexPath.section].image
+//            cell.nameLabel.text = filteredThemeData[indexPath.section].name
+//            cell.companyLabel.text = filteredThemeData[indexPath.section].company
+//            cell.difficultyLabel.text = filteredThemeData[indexPath.section].difficulty
+//            cell.playTimeLabel.text = filteredThemeData[indexPath.section].playTime
+//            cell.personnelLabel.text = filteredThemeData[indexPath.section].personnel
+//            let themeData = themeDataManager.getThemeData()
+//            cell.theme = themeData[indexPath.section]
+//            return cell
+//
+//        } else {
+//            let themeData = themeDataManager.getThemeData()
+//            cell.image.image = themeData[indexPath.section].image
+//            cell.nameLabel.text = themeData[indexPath.section].name
+//            cell.companyLabel.text = themeData[indexPath.section].company
+//            cell.difficultyLabel.text = themeData[indexPath.section].difficulty
+//            cell.playTimeLabel.text = themeData[indexPath.section].playTime
+//            cell.personnelLabel.text = themeData[indexPath.section].personnel
+//            cell.theme = themeData[indexPath.section]
+//            return cell
+//        }
         
     }
     
@@ -200,7 +199,7 @@ extension ThemeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = ThemeDetailViewContoller()
         let themeData = themeDataManager.getThemeData()
-        detailVC.themes = themeData[indexPath.section]
+        detailVC.themeData = themeData[indexPath.section]
         // ThemeDetailView 로 넘어가면서 탭바를 숨긴다.
         detailVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(detailVC, animated: true)
@@ -208,21 +207,21 @@ extension ThemeViewController: UITableViewDelegate {
     }
 }
 
-extension ThemeViewController: ThemeCellDelegate {
-    
-    func addLikeTheme(_ cell: ThemeCell, add theme: Theme) {
-        print("DEBUG: 좋아요 버튼이 눌린 셀의 정보를 전달합니다.")
-        cell.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: likeButtonConfigure), for: .normal)
-        cell.likeButton.tintColor = .orange
-//        themesManager.likeThemes.append(theme)
-//        print(themesManager.likeThemes.count)
-    }
-    
-    func removeLikeTheme(_ cell: ThemeCell, remove theme: Theme) {
-        cell.likeButton.setImage(UIImage(systemName: "heart", withConfiguration: likeButtonConfigure), for: .normal)
-        cell.likeButton.tintColor = .lightGray
-    }
-}
+//extension ThemeViewController: ThemeCellDelegate {
+//
+//    func addLikeTheme(_ cell: ThemeCell, add theme: Theme) {
+//        print("DEBUG: 좋아요 버튼이 눌린 셀의 정보를 전달합니다.")
+//        cell.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: likeButtonConfigure), for: .normal)
+//        cell.likeButton.tintColor = .orange
+////        themesManager.likeThemes.append(theme)
+////        print(themesManager.likeThemes.count)
+//    }
+//
+//    func removeLikeTheme(_ cell: ThemeCell, remove theme: Theme) {
+//        cell.likeButton.setImage(UIImage(systemName: "heart", withConfiguration: likeButtonConfigure), for: .normal)
+//        cell.likeButton.tintColor = .lightGray
+//    }
+//}
 
 extension ThemeViewController: UISearchBarDelegate {
     

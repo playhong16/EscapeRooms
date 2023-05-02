@@ -13,35 +13,31 @@ final class RecordViewController: UIViewController {
     
     let recordDataManager = CoreDataManager.shared
     let themeDataManager = ThemeDataManager.shared
-    let detailVC = RecordDetailViewController()
-
-    let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
-        return cv
-    }()
+    let recordView = RecordView()
     
     // MARK: - LifeCycle
     
+    override func loadView() {
+        view = recordView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        recordView.collectionView.delegate = self
+        recordView.collectionView.dataSource = self
+        recordView.collectionView.register(RecordCVCell.self, forCellWithReuseIdentifier: "RecordCVCell")
         configureUI()
         configureNavi()
-        configureCV()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
+        recordView.collectionView.reloadData()
     }
     
     // MARK: - Setting
     
     func configureUI() {
-        self.title = "기록"
-//        view.backgroundColor = .white
-        self.view.addSubview(collectionView)
     }
     
     func configureNavi() {
@@ -50,21 +46,6 @@ final class RecordViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = .navy
     }
     
-    func configureCV() {
-        print(#function)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(RecordCell.self, forCellWithReuseIdentifier: "RecordCell")
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
     
     // MARK: - Action
 
@@ -90,7 +71,7 @@ extension RecordViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCell", for: indexPath) as? RecordCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCVCell", for: indexPath) as? RecordCVCell else { return UICollectionViewCell() }
         let recordData = recordDataManager.getRecordThemesFromCoreData()
         let imageName = recordData[indexPath.row].theme ?? "photo"
         cell.themeImage.image = UIImage(named: imageName)
@@ -103,28 +84,18 @@ extension RecordViewController: UICollectionViewDataSource {
 
 extension RecordViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size: CGFloat = collectionView.frame.width / 2 
-        let height: CGFloat = 200
+        let size: CGFloat = collectionView.frame.width / 2.5
+        let height: CGFloat = 180
         return CGSize(width: size, height: height)
     }
-    
-    // 세로 간격
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 3
-    }
-    
-    // 가로 간격 설정
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
 }
 
 extension RecordViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = RecordDetailViewController()
         detailVC.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(detailVC, animated: true)
         detailVC.recordData = recordDataManager.getRecordThemesFromCoreData()[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
