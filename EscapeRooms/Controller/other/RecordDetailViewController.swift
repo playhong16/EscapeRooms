@@ -76,7 +76,7 @@ class RecordDetailViewController: UIViewController {
     
     func setupUI() {
         // navigationBar Back Button Color Setting
-        self.navigationController?.navigationBar.tintColor = .navy
+        self.navigationController?.navigationBar.tintColor = .customOrange
         let image = UIImage(systemName: "trash.fill")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(deleteButtonTapped))
     }

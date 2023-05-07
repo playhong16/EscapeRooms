@@ -25,9 +25,9 @@ final class TabBarViewController: UITabBarController {
         vc3.navigationItem.largeTitleDisplayMode = .always
         vc4.navigationItem.largeTitleDisplayMode = .always
         
-        vc1.title = ""
+        vc1.title = "테마"
         vc2.title = "찜"
-        vc3.title = "기록"
+        vc3.title = ""
         vc4.title = "내정보"
         
         let nav1 = UINavigationController(rootViewController: vc1)
@@ -57,9 +57,9 @@ final class TabBarViewController: UITabBarController {
         nav4.navigationBar.compactAppearance = appearance
         nav4.navigationBar.scrollEdgeAppearance = appearance
         
-//        nav1.navigationBar.prefersLargeTitles = true
+        nav1.navigationBar.prefersLargeTitles = true
         nav2.navigationBar.prefersLargeTitles = true
-        nav3.navigationBar.prefersLargeTitles = true
+        nav3.navigationBar.prefersLargeTitles = false
         nav4.navigationBar.prefersLargeTitles = true
         
         nav1.title = "테마"
@@ -68,9 +68,10 @@ final class TabBarViewController: UITabBarController {
         nav4.title = "내 정보"
         
         setViewControllers([nav1, nav2, nav3, nav4], animated: false)
-        modalPresentationStyle = .fullScreen // 27,38,59
-        tabBar.backgroundColor = .white
-        tabBar.barTintColor = .white
+        modalPresentationStyle = .fullScreen
+        tabBar.backgroundColor = .black
+        tabBar.barTintColor = .black
+        tabBar.alpha = 0.95
         tabBar.tintColor = .customOrange
         
         guard let items = self.tabBar.items else { return }

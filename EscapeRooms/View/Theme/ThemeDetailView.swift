@@ -17,7 +17,7 @@ final class ThemeDetailView: UIView {
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .black
+        scrollView.backgroundColor = .customBlack
         // 스크롤 인디케이터(스크롤바 색) 스타일 변경
         scrollView.indicatorStyle = .black
 //        scrollView.sizeToFit()
@@ -27,7 +27,7 @@ final class ThemeDetailView: UIView {
     let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
+        view.backgroundColor = .customBlack
         return view
     }()
 
@@ -61,7 +61,7 @@ final class ThemeDetailView: UIView {
     let nameLabel: UILabel = {
        let label = UILabel()
        label.translatesAutoresizingMaskIntoConstraints = false
-       label.font = UIFont.boldSystemFont(ofSize: 22)
+       label.font = UIFont.boldSystemFont(ofSize: 24)
        label.textColor = .white
        return label
    }()
@@ -112,7 +112,7 @@ final class ThemeDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 22)
-        label.text = "줄거리"
+        label.text = "테마 소개"
         label.textColor = .white
         return label
     }()
@@ -121,7 +121,7 @@ final class ThemeDetailView: UIView {
        let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.font = UIFont.systemFont(ofSize: 16)
-        tv.backgroundColor = .black
+        tv.backgroundColor = .customBlack
         tv.textColor = .white
         tv.sizeToFit()
         tv.isScrollEnabled = false
@@ -132,7 +132,7 @@ final class ThemeDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 22)
-        label.text = "가격 정보"
+        label.text = "가격"
         label.textColor = .white
         return label
     }()
@@ -141,7 +141,7 @@ final class ThemeDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16)
-        label.text = "인당 가격"
+        label.text = "1인 기준"
         label.textColor = .white
         return label
     }()
@@ -183,9 +183,9 @@ final class ThemeDetailView: UIView {
     let bottomView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = UIColor.customGray.cgColor
+        view.backgroundColor = .customBlack
+//        view.layer.borderWidth = 0.5
+//        view.layer.borderColor = UIColor.customGray.cgColor
         return view
     }()
     
@@ -195,7 +195,7 @@ final class ThemeDetailView: UIView {
         button.backgroundColor = .customOrange
         button.setTitle("예약하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         return button
@@ -282,10 +282,7 @@ final class ThemeDetailView: UIView {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
-            // 수직 스크롤을 위한 설정
-//            heightConstraint,
-            
+        
             image.topAnchor.constraint(equalTo: contentView.topAnchor),
             image.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             image.heightAnchor.constraint(equalToConstant: 450),
@@ -335,7 +332,7 @@ final class ThemeDetailView: UIView {
             bottomView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             bottomView.heightAnchor.constraint(equalToConstant: bottomViewHeight),
             
-            bottomButtonStackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
+            bottomButtonStackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 10),
             bottomButtonStackView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
             bottomButtonStackView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -20),
         ])

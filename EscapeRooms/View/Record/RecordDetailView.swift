@@ -22,7 +22,7 @@ class RecordDetailView: UIView {
     let scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.backgroundColor = .white
+        sv.backgroundColor = .customBlack
         sv.indicatorStyle = .black
         return sv
     }()
@@ -30,17 +30,9 @@ class RecordDetailView: UIView {
     let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .customBlack
         return view
     }()
-    
-//    let contentView: UIImageView = {
-//        let view = UIImageView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = .white
-//        view.image = UIImage(named: "흙길.jpeg")
-//        return view
-//    }()
     
     let resultLabel: UILabel = {
         let label = UILabel()
@@ -48,8 +40,6 @@ class RecordDetailView: UIView {
         label.text = "탈출 결과"
         return label
     }()
-    
-    var resultButtons: [UIButton] = []
     
     let successButton: UIButton = {
         let button = UIButton()
@@ -71,13 +61,14 @@ class RecordDetailView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "테마명    "
         label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .recordDetailLabelColor
         return label
     }()
     
     let themeTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.backgroundColor = .customGray
+        tf.backgroundColor = .recordDetailLabelColor
         tf.layer.cornerRadius = 8
         tf.layer.masksToBounds = true
 //        tf.contentHorizontalAlignment = .leading
@@ -96,9 +87,10 @@ class RecordDetailView: UIView {
     let toolbar: UIToolbar = {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
 //        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.backgroundColor = .customBlack
         toolbar.barStyle = UIBarStyle.default
         toolbar.sizeToFit()
-        toolbar.tintColor = .navy
+        toolbar.tintColor = .recordDetailLabelColor
         toolbar.isTranslucent = true
         toolbar.isUserInteractionEnabled = true
         
@@ -123,6 +115,7 @@ class RecordDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "탈출 시도"
+        label.textColor = .recordDetailLabelColor
         label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
@@ -130,6 +123,7 @@ class RecordDetailView: UIView {
     let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.backgroundColor = .recordDetailLabelColor
         picker.preferredDatePickerStyle = .automatic
         picker.date = Date()
         picker.tintColor = .black
@@ -137,6 +131,8 @@ class RecordDetailView: UIView {
         picker.locale = Locale(identifier: "ko_KR")
         picker.timeZone = .autoupdatingCurrent
         picker.contentHorizontalAlignment = .leading
+        picker.layer.cornerRadius = 8
+        picker.layer.masksToBounds = true
         return picker
     }()
     
@@ -154,6 +150,7 @@ class RecordDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "걸린 시간"
+        label.textColor = .recordDetailLabelColor
         label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
@@ -162,6 +159,7 @@ class RecordDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "분"
+        label.textColor = .recordDetailLabelColor
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
@@ -170,6 +168,7 @@ class RecordDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "초"
+        label.textColor = .recordDetailLabelColor
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
@@ -177,7 +176,7 @@ class RecordDetailView: UIView {
     let minuteTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.backgroundColor = .customGray
+        tf.backgroundColor = .recordDetailLabelColor
         tf.layer.cornerRadius = 8
         tf.textAlignment = .center
         tf.layer.masksToBounds = true
@@ -188,7 +187,7 @@ class RecordDetailView: UIView {
     let secondTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.backgroundColor = .customGray
+        tf.backgroundColor = .recordDetailLabelColor
         tf.layer.cornerRadius = 8
         tf.textAlignment = .center
         tf.layer.masksToBounds = true
@@ -210,6 +209,7 @@ class RecordDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "힌트 갯수"
+        label.textColor = .recordDetailLabelColor
         label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
@@ -217,7 +217,7 @@ class RecordDetailView: UIView {
     let hintTextField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.backgroundColor = .customGray
+        tf.backgroundColor = .recordDetailLabelColor
         tf.layer.cornerRadius = 8
         tf.textAlignment = .center
         tf.placeholder = "0"
@@ -228,6 +228,7 @@ class RecordDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "개"
+        label.textColor = .recordDetailLabelColor
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
@@ -246,6 +247,7 @@ class RecordDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "내용"
+        label.textColor = .recordDetailLabelColor
         label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
@@ -253,9 +255,9 @@ class RecordDetailView: UIView {
     let textView: UITextView = {
         let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.backgroundColor = .white
+        tv.backgroundColor = .recordDetailLabelColor
         tv.layer.borderWidth = 1.0
-        tv.layer.borderColor = UIColor.orange.cgColor
+        tv.layer.borderColor = UIColor.black.cgColor
         tv.layer.cornerRadius = 8
         tv.layer.masksToBounds = true
 //        tv.isScrollEnabled = true
@@ -275,8 +277,9 @@ class RecordDetailView: UIView {
     let bottomView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.layer.borderWidth = 0.5
+        view.backgroundColor = .customBlack
+        view.alpha = 0.8
+//        view.layer.borderWidth = 0.5
         view.layer.borderColor = UIColor.customGray.cgColor
         return view
     }()
@@ -285,7 +288,7 @@ class RecordDetailView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("기록하기", for: .normal)
-        button.backgroundColor = .orange
+        button.backgroundColor = .customOrange
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true

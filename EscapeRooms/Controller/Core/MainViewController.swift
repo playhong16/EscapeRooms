@@ -27,18 +27,18 @@ class MainViewController: UIViewController {
         mainView.titleCollectionView.dataSource = self
         mainView.titleCollectionView.delegate = self
         navigationController?.navigationBar.tintColor = .white
-        let image = UIImage(named: "exit.png")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
-        navigationItem.leftBarButtonItem?.tintColor = .customOrange
+//        let image = UIImage(named: "exit.png")
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
+//        navigationItem.leftBarButtonItem?.tintColor = .customOrange
     }
     
     // MARK: - Setting
-    
-    // MARK: - Action
 
 }
 
 // MARK: - Extention
+
+// MARK: - UITableView
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -76,6 +76,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - UICollectionView
+
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let titleData = ThemeDataManager.shared.getThemeData()
@@ -94,10 +96,13 @@ extension MainViewController: UICollectionViewDelegate {
     
 }
 
+// MARK: - ThemeTableViewCellDelegate
+
 extension MainViewController: ThemeTableViewCellDelegate {
     func moveDetailView(indexPath: IndexPath) {
         let vc = ThemeDetailViewContoller()
         vc.hidesBottomBarWhenPushed = true
+        vc.navigationItem.largeTitleDisplayMode = .never
         let themeData = ThemeDataManager.shared.getThemeData()
         vc.themeData = themeData[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)

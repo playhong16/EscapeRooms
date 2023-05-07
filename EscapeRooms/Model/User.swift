@@ -2,13 +2,16 @@
 //  User.swift
 //  EscapeRooms
 //
-//  Created by playhong on 2023/03/09.
+//  Created by playhong on 2023/04/26.
 //
 
-import Foundation
+import UIKit
 
 struct User {
     var nickname: String
-    let email: String
-    var password: String
+    var prfileImage: UIImage
+    
+    var userInfoIsVaild: Bool {
+        return UserDefaults.standard.bool(forKey: "")
+    }
 }

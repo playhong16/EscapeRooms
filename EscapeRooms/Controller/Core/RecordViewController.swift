@@ -23,27 +23,33 @@ final class RecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        recordView.collectionView.delegate = self
-        recordView.collectionView.dataSource = self
-        recordView.collectionView.register(RecordCVCell.self, forCellWithReuseIdentifier: "RecordCVCell")
+        recordView.escapeHistoryTableView.dataSource = self
+        recordView.escapeHistoryTableView.delegate = self
+        recordView.escapeHistoryTableView.register(EscapeHistoryTableViewCell.self, forCellReuseIdentifier: EscapeHistoryTableViewCell.identifier)
         configureUI()
         configureNavi()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        recordView.escapeHistoryTableView.reloadData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        recordView.collectionView.reloadData()
     }
     
     // MARK: - Setting
     
     func configureUI() {
+        
     }
     
     func configureNavi() {
+        navigationController?.navigationBar.backgroundColor = .clear
         let image = UIImage(systemName: "square.and.pencil")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem?.tintColor = .navy
+        navigationItem.rightBarButtonItem?.tintColor = .customOrange
     }
     
     
@@ -60,38 +66,27 @@ final class RecordViewController: UIViewController {
 
 // MARK: - Extension
 
-extension RecordViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension RecordViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let count = recordDataManager.getRecordThemesFromCoreData().count
+        print("DEBUG: EscapeHistoryTableView - \(#function), DataCounter \(count)개")
         return recordDataManager.getRecordThemesFromCoreData().count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecordCVCell", for: indexPath) as? RecordCVCell else { return UICollectionViewCell() }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EscapeHistoryTableViewCell.identifier, for: indexPath) as? EscapeHistoryTableViewCell else { return UITableViewCell() }
         let recordData = recordDataManager.getRecordThemesFromCoreData()
-        let imageName = recordData[indexPath.row].theme ?? "photo"
-        cell.themeImage.image = UIImage(named: imageName)
         cell.recordData = recordData[indexPath.row]
         return cell
     }
     
-    
-}
-
-extension RecordViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size: CGFloat = collectionView.frame.width / 2.5
-        let height: CGFloat = 180
-        return CGSize(width: size, height: height)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
 }
 
-extension RecordViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+extension RecordViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = RecordDetailViewController()
         detailVC.hidesBottomBarWhenPushed = true
         detailVC.recordData = recordDataManager.getRecordThemesFromCoreData()[indexPath.row]
