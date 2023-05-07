@@ -54,7 +54,7 @@ final class RecordView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
         label.text = "총 86 개의 방탈출을 시도, 그 중 76 개를 성공..."
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .right
         label.layer.cornerRadius = 3
         label.layer.masksToBounds = true
@@ -149,7 +149,7 @@ final class RecordView: UIView {
         progressView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 5),
+            mainView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 30),
             mainView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 5),
             mainView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -5),
             mainView.heightAnchor.constraint(equalToConstant: mainViewHeight),

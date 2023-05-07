@@ -16,15 +16,14 @@ class CircularProgressBar: UIView {
 //    }
     
     var progress: CGFloat = 0.756
-    
     let ringWidth: CGFloat = 6
     let backgroundMask = CAShapeLayer()
-    
     private let progressLayer = CAShapeLayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .clear
+        setupLayers()
         layer.addSublayer(progressLayer)
     }
     
@@ -46,13 +45,12 @@ class CircularProgressBar: UIView {
     
     func setupLayers() {
         backgroundMask.lineWidth = ringWidth
-        backgroundMask.fillColor = UIColor.white.cgColor
-        backgroundMask.strokeColor = UIColor.white.cgColor
+        backgroundMask.fillColor = nil
+        backgroundMask.strokeColor = UIColor.black.cgColor
         layer.mask = backgroundMask
         
         progressLayer.lineWidth = 10
-        progressLayer.fillColor = UIColor.white.cgColor
-//        layer.addSublayer(progressLayer)
+        progressLayer.fillColor = UIColor.customBlack.cgColor
         layer.transform = CATransform3DMakeRotation(CGFloat(90 * Double.pi / 180), 0, 0, -1)
     }
     

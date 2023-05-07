@@ -77,6 +77,7 @@ extension RecordViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: EscapeHistoryTableViewCell.identifier, for: indexPath) as? EscapeHistoryTableViewCell else { return UITableViewCell() }
         let recordData = recordDataManager.getRecordThemesFromCoreData()
         cell.recordData = recordData[indexPath.row]
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     

@@ -23,13 +23,18 @@ class EscapeHistoryTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
     private let themeImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = UIImage(named: "강남목욕탕.jpeg")
+        iv.layer.cornerRadius = 25
+//        iv.layer.masksToBounds = true
+        iv.clipsToBounds = true
+        iv.contentMode = .scaleAspectFill
         return iv
     }()
     
@@ -37,7 +42,7 @@ class EscapeHistoryTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
@@ -45,17 +50,18 @@ class EscapeHistoryTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
     
     private lazy var stackView: UIStackView = {
        
-        let sv = UIStackView(arrangedSubviews: [dateLabel, themeNameLabel, themeImageView, escapeTimeLabel])
+        let sv = UIStackView(arrangedSubviews: [dateLabel, themeImageView, themeNameLabel, escapeTimeLabel])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .horizontal
         sv.alignment = .fill
         sv.distribution = .fill
+        sv.spacing = 20
         return sv
         
     }()
@@ -89,15 +95,34 @@ class EscapeHistoryTableViewCell: UITableViewCell {
     
     func setupUI() {
         self.backgroundColor = .customBlack
+        self.layer.borderWidth = 0.5
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.cornerRadius = 8
         self.addSubview(stackView)
     }
     
     func setConstraints() {
+        
+        themeNameLabel.setContentHuggingPriority(.init(249), for: .vertical)
+        themeNameLabel.setContentHuggingPriority(.init(249), for: .horizontal)
+        
+        let imageViewConstraints = [
+            themeImageView.heightAnchor.constraint(equalToConstant: 50),
+            themeImageView.widthAnchor.constraint(equalToConstant: 50),
+        ]
+        NSLayoutConstraint.activate(imageViewConstraints)
+        
+//        let dateLabelConstraints = [
+//            dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+//            dateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
+//        ]
+//        NSLayoutConstraint.activate(dateLabelConstraints)
+        
+        
         let stackViewConstraints = [
-            stackView.topAnchor.constraint(equalTo: self.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ]
         NSLayoutConstraint.activate(stackViewConstraints)
     }

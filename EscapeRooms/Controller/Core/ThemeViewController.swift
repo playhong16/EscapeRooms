@@ -213,8 +213,8 @@ extension ThemeViewController: UITableViewDelegate {
 //        print("DEBUG: 좋아요 버튼이 눌린 셀의 정보를 전달합니다.")
 //        cell.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: likeButtonConfigure), for: .normal)
 //        cell.likeButton.tintColor = .orange
-////        themesManager.likeThemes.append(theme)
-////        print(themesManager.likeThemes.count)
+//        themesManager.likeThemes.append(theme)
+//        print(themesManager.likeThemes.count)
 //    }
 //
 //    func removeLikeTheme(_ cell: ThemeCell, remove theme: Theme) {
